@@ -3,13 +3,14 @@ import React from "react";
 function TotalsCard(props) {
     return(
         <div className="text-center" style={props.style}>
-            <h6 style={{
+            <p style={{
                 fontSize: '16px',
                 fontWeight: 600
-            }}>{props.title}</h6>
-            <h5 style={{
+            }}>{props.title}</p>
+            <p style={{
+                fontSize: '20px',
                 fontWeight: 600
-            }}>{props.count ? props.count.toLocaleString() : props.count}</h5>
+            }}>{props.count ? props.count.toLocaleString() : props.count}</p>
         </div>
     )
 }
