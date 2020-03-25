@@ -14,6 +14,7 @@ class CountryTable extends React.Component {
                 defaultSortField={'cases.total'}
                 defaultSortAsc={false}
                 highlightOnHover={true}
+                dense={true}
             />
         );
     }

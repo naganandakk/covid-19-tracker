@@ -6,6 +6,7 @@ import CountryTable from "./components/country-table/CountryTable";
 import WorldMap from "./components/world-map/WorldMap";
 import TotalsTable from "./components/totals-table/TotalsTable";
 import covid19api from "./apis/covid19";
+import './App.css';
 
 class App extends React.Component {
     constructor(props) {

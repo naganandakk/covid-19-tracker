@@ -2,7 +2,7 @@ import React from "react";
 
 function TotalsCard(props) {
     return(
-        <div className="text-center" style={props.style}>
+        <div className="text-center totals-card" style={props.style}>
             <p style={{
                 fontSize: '16px',
                 fontWeight: 600
