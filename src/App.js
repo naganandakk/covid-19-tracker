@@ -17,6 +17,7 @@ class App extends React.Component {
                 cases: {},
                 deaths: {}
             },
+            lastUpdatedAt: null,
             isLoading: true
         };
     }
@@ -42,6 +43,7 @@ class App extends React.Component {
                 this.setState({
                     statistics: statistics,
                     totals: totals,
+                    lastUpdatedAt: totals.time,
                     isLoading: false
                 });
             }).catch((error) => {
@@ -55,7 +57,7 @@ class App extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Header/>
+                <Header lastUpdatedAt={this.state.lastUpdatedAt}/>
                 <div className="container page-container">
                     <div className="row">
                         {this.renderStats()}

@@ -7,9 +7,21 @@ class Header extends React.Component {
             <div className="container-fluid">
                 <div className="app-header">
                     <h3>COVID-19 TRACKER</h3>
+                    {this.renderLastUpdateAt()}
                 </div>
             </div>
         );
+    }
+
+    renderLastUpdateAt() {
+        if (!this.props.lastUpdatedAt) {
+            return null;
+        }
+
+        const lastUpdatedDate = new Date(this.props.lastUpdatedAt);
+        return(
+            <h6>(Last Update At: {lastUpdatedDate.toLocaleString()})</h6>
+        )
     }
 }
 
