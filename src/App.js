@@ -8,6 +8,8 @@ import TotalsTable from "./components/totals-table/TotalsTable";
 import covid19api from "./apis/covid19";
 import './App.css';
 
+const MINUTE_5 = 1000 * 60 * 5;
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -18,13 +20,18 @@ class App extends React.Component {
                 deaths: {}
             },
             lastUpdatedAt: null,
-            isLoading: true
+            isLoading: false
         };
     }
 
     componentDidMount() {
         this.showLoader();
         this.fetchData();
+        this.refreshDashboardHandler = setInterval(() => this.fetchData(), MINUTE_5)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.refreshDashboardHandler);
     }
 
     showLoader() {
@@ -50,6 +57,7 @@ class App extends React.Component {
                     isLoading: false
                 });
             }).catch((error) => {
+                console.log(error);
                 this.setState({
                     isLoading: false
                 })
