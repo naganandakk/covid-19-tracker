@@ -1,63 +1,81 @@
-const numberFormatter = (number) => {
-    if (number) {
-        return number.toLocaleString();
-    } else {
-        return number;
-    }
-}
+import React from "react";
+import './TableColumn.css';
 
 const countryFormatter = (country) => {
-    return country.toUpperCase();
+    return <div className="country-table-cell country-name">{country.toUpperCase()}</div>;
+}
+
+const countFormatter = (count) => {
+    if (count) {
+        count = count.toLocaleString();
+    }
+
+    return(
+        <div className="country-table-cell count">{count}</div>
+    )
+}
+
+const headerFormatter = (headerName) => {
+    return(
+        <div className="country-table-header">{headerName}</div>
+    )
 }
 
 const columns = [
     {
-        name: 'COUNTRY',
+        name: headerFormatter('COUNTRY'),
         selector: 'country',
         sortable: true,
-        format: row => countryFormatter(row.country),
+        compact:true,
+        cell: row => countryFormatter(row.country)
     },
     {
-        name: 'CONFIRMED',
+        name: headerFormatter('CONFIRMED'),
         selector: 'cases.total',
         sortable: true,
-        format: row => numberFormatter(row.cases.total),
-        right: true
+        right: true,
+        compact:true,
+        cell: row => countFormatter(row.cases.total)
     },
     {
-        name: 'ACTIVE',
+        name: headerFormatter('ACTIVE'),
         selector: 'cases.active',
         sortable: true,
-        format: row => numberFormatter(row.cases.active),
-        right: true
+        right: true,
+        compact:true,
+        cell: row => countFormatter(row.cases.active)
     },
     {
-        name: 'NEW',
+        name: headerFormatter('NEW'),
         selector: 'cases.new',
         sortable: true,
-        format: row => numberFormatter(row.cases.new),
-        right: true
+        right: true,
+        compact:true,
+        cell: row => countFormatter(row.cases.new)
     },
     {
-        name: 'CRITICAL',
+        name: headerFormatter('CRITICAL'),
         selector: 'cases.critical',
         sortable: true,
-        format: row => numberFormatter(row.cases.critical),
-        right: true
+        right: true,
+        compact:true,
+        cell: row => countFormatter(row.cases.critical)
     },
     {
-        name: 'RECOVERED',
+        name: headerFormatter('RECOVERED'),
         selector: 'cases.recovered',
         sortable: true,
-        format: row => numberFormatter(row.cases.recovered),
-        right: true
+        right: true,
+        compact:true,
+        cell: row => countFormatter(row.cases.recovered)
     },
     {
-        name: 'DEATHS',
+        name: headerFormatter('DEATHS'),
         selector: 'deaths.total',
         sortable: true,
-        format: row => numberFormatter(row.deaths.total),
-        right: true
+        right: true,
+        compact: true,
+        cell: row => countFormatter(row.deaths.total)
     }
 ];
 
