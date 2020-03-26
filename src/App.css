@@ -1,0 +1,27 @@
+.page-container {
+    margin-top: 20px;
+}
+
+.color-confirmed {
+    color: #084177;
+}
+
+.color-active {
+    color: #F76ABC;
+}
+
+.color-new {
+    color: #1EB2A6;
+}
+
+.color-critical {
+    color: #FF0000;
+}
+
+.color-deaths {
+    color: #A9A9A9;
+}
+
+.color.recovered {
+    color: #008000;
+}

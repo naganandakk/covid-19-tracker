@@ -52,39 +52,46 @@ class App extends React.Component {
             });
     }
 
-    showStats() {
-        if (this.state.isLoading) {
-            return(
-                <div className="col-lg-12 text-center">
-                    <h4>Loading...</h4>
-                </div>
-            );
-        } else {
-            return(
-                <React.Fragment>
-                    <div className="col-lg-12">
-                        <TotalsTable totals={this.state.totals}/>
-                    </div>
-                    <div className="col-lg-12">
-                        <CountryTable statistics={this.state.statistics}/>
-                        {/*<WorldMap/>*/}
-                    </div>
-                </React.Fragment>
-            )
-        }
-    }
     render() {
         return (
             <React.Fragment>
                 <Header/>
-                <div className="container" style={{
-                    marginTop: '20px'
-                }}>
+                <div className="container page-container">
                     <div className="row">
-                        {this.showStats()}
+                        {this.renderStats()}
                     </div>
                 </div>
                 <Footer/>
+            </React.Fragment>
+        )
+    }
+
+    renderStats() {
+        if (this.state.isLoading) {
+            return this.renderLoader();
+        } else {
+            return this.renderStatsComponents();
+        }
+    }
+
+    renderLoader() {
+        return(
+            <div className="col-lg-12 text-center">
+                <h4>Loading...</h4>
+            </div>
+        );
+    }
+
+    renderStatsComponents() {
+        return(
+            <React.Fragment>
+                <div className="col-lg-12">
+                    <TotalsTable totals={this.state.totals}/>
+                </div>
+                <div className="col-lg-12">
+                    <CountryTable statistics={this.state.statistics}/>
+                    {/*<WorldMap/>*/}
+                </div>
             </React.Fragment>
         )
     }

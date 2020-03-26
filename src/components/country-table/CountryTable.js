@@ -10,7 +10,6 @@ class CountryTable extends React.Component {
                 columns={TableColumns}
                 data={this.props.statistics}
                 pagination={true}
-                paginationPerPage={10}
                 defaultSortField={'cases.total'}
                 defaultSortAsc={false}
                 highlightOnHover={true}

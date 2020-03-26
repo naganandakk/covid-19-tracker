@@ -1,18 +1,28 @@
 import React from "react";
+import './TotalsCard.css';
 
-function TotalsCard(props) {
-    return(
-        <div className="text-center totals-card" style={props.style}>
-            <p style={{
-                fontSize: '16px',
-                fontWeight: 600
-            }}>{props.title}</p>
-            <p style={{
-                fontSize: '20px',
-                fontWeight: 600
-            }}>{props.count ? props.count.toLocaleString() : props.count}</p>
-        </div>
-    )
+class TotalsCard extends React.Component {
+    render() {
+        if (!this.props.title) {
+            return null;
+        }
+
+        return this.renderText();
+    }
+
+    renderText() {
+        const colorClassName = "color-" + this.props.title.toLowerCase();
+        return(
+            <div className={`totals-card ${colorClassName}`}>
+                <p className="totals-card-title">{this.props.title}</p>
+                <p className="totals-card-count">{this.formatCount(this.props.count)}</p>
+            </div>
+        )
+    }
+
+    formatCount(count) {
+        return count ? count.toLocaleString() : count
+    }
 }
 
 export default TotalsCard;

@@ -1,12 +1,13 @@
 import React from "react";
+import './Header.css';
 
 class Header extends React.Component {
     render() {
         return(
-            <div className="container-fluid text-center" style={{
-                padding: '10px'
-            }}>
-                <h3>COVID-19 TRACKER</h3>
+            <div className="container-fluid">
+                <div className="app-header">
+                    <h3>COVID-19 TRACKER</h3>
+                </div>
             </div>
         );
     }
