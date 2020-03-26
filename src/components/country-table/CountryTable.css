@@ -1,0 +1,12 @@
+.country-table-title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 10px;
+}
+
+@media (max-width: 767px) {
+    .country-table .rdt_Pagination {
+        justify-content: left;
+    }
+}

@@ -23,14 +23,17 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.showLoader();
         this.fetchData();
     }
 
-    fetchData() {
+    showLoader() {
         this.setState({
             isLoading: true
         })
+    }
 
+    fetchData(showLoader) {
         covid19api.get("/statistics")
             .then((response) => {
                 let statistics = response.data.response;
@@ -47,7 +50,6 @@ class App extends React.Component {
                     isLoading: false
                 });
             }).catch((error) => {
-                console.log(error);
                 this.setState({
                     isLoading: false
                 })

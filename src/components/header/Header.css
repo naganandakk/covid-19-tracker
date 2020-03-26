@@ -2,3 +2,7 @@
     padding: 10px;
     text-align: center;
 }
+
+.app-header .last-updated-at {
+    font-size: 14px;
+}

@@ -20,7 +20,7 @@ class Header extends React.Component {
 
         const lastUpdatedDate = new Date(this.props.lastUpdatedAt);
         return(
-            <h6>(Last Update At: {lastUpdatedDate.toLocaleString()})</h6>
+            <h6 className="last-updated-at">(Last Update At: {lastUpdatedDate.toLocaleString()})</h6>
         )
     }
 }
