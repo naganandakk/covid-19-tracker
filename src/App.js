@@ -7,7 +7,7 @@ class App extends React.Component {
     render() {
         return(
             <React.Fragment>
-                <div className="container page-container">
+                <div className="container-fluid page-container">
                     <Dashboard/>
                 </div>
                 <Footer/>

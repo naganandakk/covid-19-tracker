@@ -1,0 +1,10 @@
+.world-map {
+    height: 450px;
+}
+
+.selected-country-stats {
+    z-index: 999;
+    /*background-color: #AAD3DF;*/
+    padding:1em;
+    height: 100%;
+}

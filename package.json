@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "geojson-world-map": "0.0.2",
     "gh-pages": "^2.2.0"
   }
 }

@@ -1,23 +1,16 @@
 import React from "react";
+import './StatsCard.css';
 
-class StatsCard extends React.Component {
-    render() {
-        return(
-            <div style={{...this.props.style, padding: '5px', borderRadius: '5px'}}>
-                <p style={{
-                    fontSize: '10px',
-                    fontWeight: 600,
-                    padding: '0px',
-                    margin:'0px'
-                }}>{this.props.title}</p>
-                <p style={{
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    margin:'3px'
-                }}>{this.props.count ? this.props.count.toLocaleString() : this.props.count}</p>
-            </div>
-        )
-    }
+function StatsCard(props) {
+    const colorClassName = "color-" + props.title.toLowerCase();
+    const bgColorClassName = "bg-color-" + props.title.toLowerCase();
+
+    return(
+        <div className={`${colorClassName} ${bgColorClassName} country-stats-card`}>
+            <p className="country-stats-card-title">{props.title}</p>
+            <p className="country-stats-card-count">{props.count.toLocaleString()}</p>
+        </div>
+    )
 }
 
 export default StatsCard;

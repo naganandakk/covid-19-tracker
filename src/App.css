@@ -3,25 +3,33 @@
 }
 
 .color-confirmed {
-    color: #084177;
+    color: #FF073A;
 }
 
 .color-active {
-    color: #F76ABC;
+    color: #007BFF;
 }
 
-.color-new {
-    color: #1EB2A6;
-}
-
-.color-critical {
-    color: #FF0000;
+.color-recovered {
+    color: #28A745;
 }
 
 .color-deceased {
-    color: #A9A9A9;
+    color: #6C757D;
 }
 
-.color.recovered {
-    color: #008000;
+.bg-color-confirmed {
+    background-color: #FEE1E1;
+}
+
+.bg-color-active {
+    background-color: #F3F4FF;
+}
+
+.bg-color-recovered {
+    background-color: #E1F2E8;
+}
+
+.bg-color-deceased {
+    background-color: #F6F6F7;
 }

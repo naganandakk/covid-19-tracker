@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import TotalsTable from "../../components/totals-table/TotalsTable";
 import CountryTable from "../../components/country-table/CountryTable";
 import './index.css';
+import WorldMap from "../../components/world-map/WorldMap";
 
 const MINUTE_5 = 1000 * 60 * 5;
 
@@ -74,6 +75,9 @@ class Dashboard extends React.Component {
                     <DashboardHeader lastUpdatedAt={this.state.lastUpdatedAt}/>
                     <TotalsTable totals={this.state.totals}/>
                     <CountryTable statistics={this.state.statistics}/>
+                </div>
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                    <WorldMap stats={this.state.statistics} overallStats={this.state.totals}/>
                 </div>
             </React.Fragment>
         )
