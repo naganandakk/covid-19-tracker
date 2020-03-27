@@ -3,10 +3,6 @@ import './TotalsCard.css';
 
 class TotalsCard extends React.Component {
     render() {
-        if (!this.props.title) {
-            return null;
-        }
-
         return this.renderText();
     }
 

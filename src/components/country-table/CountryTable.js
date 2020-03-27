@@ -8,26 +8,29 @@ class CountryTable extends React.Component {
     render() {
         return(
             <div className="row">
-                <div className="col-lg-12 country-table-title">
-                    STATISTICS BY COUNTRY
-                </div>
                 <div className="col-lg-12">
-                    <DataTable
-                        className="country-table"
-                        columns={TableColumns}
-                        data={this.props.statistics}
-                        pagination={true}
-                        defaultSortField={'cases.total'}
-                        defaultSortAsc={false}
-                        highlightOnHover={true}
-                        dense={true}
-                        noHeader={true}
-                        paginationComponentOptions={{
-                            rowsPerPageText: '',
-                        }}
-                    />
+                    {this.renderTable()}
                 </div>
             </div>
+        );
+    }
+
+    renderTable() {
+        return (
+            <DataTable
+                className="country-table"
+                columns={TableColumns}
+                data={this.props.statistics}
+                pagination={true}
+                defaultSortField={'cases.total'}
+                defaultSortAsc={false}
+                highlightOnHover={true}
+                dense={true}
+                noHeader={true}
+                paginationComponentOptions={{
+                    rowsPerPageText: '',
+                }}
+            />
         );
     }
 }

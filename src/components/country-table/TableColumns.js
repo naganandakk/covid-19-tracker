@@ -46,22 +46,6 @@ const columns = [
         cell: row => countFormatter(row.cases.active)
     },
     {
-        name: headerFormatter('NEW'),
-        selector: 'cases.new',
-        sortable: true,
-        right: true,
-        compact:true,
-        cell: row => countFormatter(row.cases.new)
-    },
-    {
-        name: headerFormatter('CRITICAL'),
-        selector: 'cases.critical',
-        sortable: true,
-        right: true,
-        compact:true,
-        cell: row => countFormatter(row.cases.critical)
-    },
-    {
         name: headerFormatter('RECOVERED'),
         selector: 'cases.recovered',
         sortable: true,
@@ -70,7 +54,7 @@ const columns = [
         cell: row => countFormatter(row.cases.recovered)
     },
     {
-        name: headerFormatter('DEATHS'),
+        name: headerFormatter('DECEASED'),
         selector: 'deaths.total',
         sortable: true,
         right: true,

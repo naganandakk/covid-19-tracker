@@ -2,38 +2,53 @@
     text-align: center;
 }
 .totals-card-title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
 }
 
 .totals-card-count {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
-    .totals-card-title {
-        font-size: 12px;
-    }
-
-    .totals-card-count {
-        font-size: 16px;
-    }
+.totals-card-table {
+    margin-top: 2em;
 }
 
 @media (max-width: 575px) {
     .totals-card-container {
         width: auto;
-        padding-right: 0.3em;
-        padding-left: 0.3em;
-    }
-    .totals-card-title {
-        font-size: 0.6rem;
-        padding: 0;
     }
 
+    .totals-card-table {
+        display: flex;
+        align-items: stretch;
+    }
+}
+
+@media (min-width: 385px) and (max-width: 575px){
+    .totals-card-title {
+        font-size: 0.7rem;
+    }
+    .totals-card-count {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 348px) and (max-width: 384px) {
+    .totals-card-title {
+        font-size: 0.6rem;
+    }
     .totals-card-count {
         font-size: 0.8rem;
-        padding: 0;
+    }
+}
+
+@media (max-width: 347px) {
+    .totals-card-title {
+        font-size: 0.5rem;
+    }
+    .totals-card-count {
+        font-size: 0.7rem;
     }
 }
