@@ -9,11 +9,11 @@ import convertCountryName from './CountryNameConverter'
 
 const caseContributionColors = {
     "very-high": "#BD302A",
-    "high": "#E93D36",
-    "medium": "#FA7152",
-    "medium-low": "#FCA588",
-    "low": "#FDD533",
-    "no-impact": "#87CEEB"
+    "high": "#CA4F4A",
+    "medium": "#D76E6A",
+    "medium-low": "#E48D8A",
+    "low": "#F1ACAA",
+    "no-impact": "#FFCCCB"
 };
 
 class WorldMap extends React.Component {
