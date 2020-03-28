@@ -1,30 +1,28 @@
 export default function (country) {
     country = country.toLowerCase().trim();
-
-    if (country === "united states") {
-        country = "USA";
-    } else if (country === "united kingdom") {
-        country = "UK";
-    } else if (country === "united arab emirates") {
-        country = "UAE";
-    } else if (country === "dominican rep.") {
-        country = "Dominican-Republic";
-    } else if (country === "central african rep.") {
-        country = "CAR"
-    } else if (country === "dem. rep. congo") {
-        country = "DRC";
-    } else if (country === "korea") {
-        country = "S.-Korea";
+    const conversionMap = {
+        "united states": "USA",
+        "united kingdom": "UK",
+        "united arab emirates": "UAE",
+        "dominican rep.": "Dominican-Republic",
+        "central african rep.": "CAR",
+        "dem. rep. congo": "DRC",
+        "korea": "S.-Korea"
+    }
+    const mappedCountry = conversionMap[country];
+    if (mappedCountry) {
+        country = mappedCountry;
     } else {
         country = country.replace(/ /g, "-");
         const countrySplits = country.split("-").map((e) => {
             return e.charAt(0).toUpperCase() + e.slice(1);
         });
         country = countrySplits.join("-");
-    }
 
-    if ((country === null) || (country === "")) {
-        country = "India";
+        // Issue with map. J&K coming as empty
+        if ((country === null) || (country === "")) {
+            country = "India";
+        }
     }
 
     return country;
