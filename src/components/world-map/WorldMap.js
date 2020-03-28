@@ -34,8 +34,10 @@ class WorldMap extends React.Component {
     render() {
         return(
             <React.Fragment>
-                <h4>STATISTICS BY COUNTRY</h4>
-                <h6>Hover over a country for more details</h6>
+                <div className="world-map-header">
+                    <h4>STATISTICS BY COUNTRY</h4>
+                    <h6>Hover over a country for more details</h6>
+                </div>
                 <div className="row">
                     <div className="col-lg-12 selected-country-stats">
                         <SelectedCountryStats selectedCountry={this.state.selectedCountry}/>

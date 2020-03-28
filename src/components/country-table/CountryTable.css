@@ -5,8 +5,36 @@
     padding: 10px;
 }
 
-@media (max-width: 767px) {
-    .country-table .rdt_Pagination {
-        justify-content: left;
+.affected-countries-count {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+}
+
+.country-table-wrapper {
+    height: 350px;
+    overflow-y: scroll;
+    padding: 0.3em;
+}
+
+.country-table-header {
+    font-weight: 600;
+}
+
+@media (max-width: 575px) {
+    .affected-countries-count {
+        font-size: 0.6rem;
+    }
+
+    .country-table-header {
+        font-size: 0.6rem;
+    }
+    
+    .rdt_TableCell, .rdt_TableCol {
+        min-width: 0px !important;
+        max-width: 20% !important;
+        font-size: 0.5rem !important;
     }
 }

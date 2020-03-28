@@ -5,3 +5,9 @@
 .map-container {
     margin-top: 0.6em;
 }
+
+@media (max-width: 991px) {
+    .world-map-header {
+        margin-top: 15px;
+    }
+}
