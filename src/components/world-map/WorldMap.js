@@ -13,7 +13,7 @@ const caseContributionColors = {
     "medium": "#FA7152",
     "medium-low": "#FCA588",
     "low": "#FDD533",
-    "no-impact": "#FFF5F0"
+    "no-impact": "#87CEEB"
 };
 
 class WorldMap extends React.Component {
@@ -25,8 +25,7 @@ class WorldMap extends React.Component {
                 lat: 40.8471,
                 lng: 14.0625
             },
-            zoom: 1,
-            maxZoom: 1
+            zoom: 1
         };
         this.mapRef = createRef();
         this.stats = _.keyBy(props.stats, 'country');
@@ -59,7 +58,6 @@ class WorldMap extends React.Component {
                 zoomControl={false}
                 draggable={false}
                 ref={this.mapRef}
-                maxZoom={this.state.maxZoom}
             >
                 <GeoJSON
                     data={worldGeoJSON}
@@ -73,11 +71,25 @@ class WorldMap extends React.Component {
     }
 
     handleMouseOver = (e)  => {
-        const country = e.properties.name;
-        const stats = this.stats[convertCountryName(country)];
+        const country = convertCountryName(e.properties.name);
+        const stats = this.stats[country];
         if (stats) {
             this.setState({
                 selectedCountry: stats
+            })
+        } else {
+            this.setState({
+                selectedCountry: {
+                    country: country,
+                    cases: {
+                        total: 'NA',
+                        active: 'NA',
+                        recovered: 'NA'
+                    },
+                    deaths: {
+                        total: 'NA'
+                    }
+                }
             })
         }
     };
@@ -95,15 +107,15 @@ class WorldMap extends React.Component {
     }
 
     getColorByContribution(contribution) {
-        if (contribution >= 15) {
+        if (contribution >= 25000) {
             return caseContributionColors["very-high"];
-        } else if (contribution >= 10) {
+        } else if (contribution >= 15000) {
             return caseContributionColors["high"];
-        } else if (contribution >= 5) {
+        } else if (contribution >= 10000) {
             return caseContributionColors["medium"];
-        } else if (contribution >= 3) {
+        } else if (contribution >= 3000) {
             return caseContributionColors["medium-low"];
-        } else if (contribution >= 2) {
+        } else if (contribution > 500) {
             return caseContributionColors["low"];
         } else {
             return caseContributionColors["no-impact"];
@@ -116,9 +128,7 @@ class WorldMap extends React.Component {
 
         if (stats) {
             const confirmedCases = stats.cases.total;
-            const worldwideConfirmedCases = this.props.overallStats.cases.total;
-            const contribution = (confirmedCases / worldwideConfirmedCases) * 100;
-            fillColor = this.getColorByContribution(contribution);
+            fillColor = this.getColorByContribution(confirmedCases);
         }
 
         return {
