@@ -23,7 +23,8 @@
     "react-moment": "^0.9.7",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.3.0",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "world-map-geojson": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

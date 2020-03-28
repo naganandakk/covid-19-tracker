@@ -2,7 +2,7 @@ import React, {createRef} from "react";
 import _ from 'lodash';
 import SelectedCountryStats from "./SelectedCountryStats";
 import { Map, GeoJSON } from "react-leaflet";
-import worldGeoJSON from 'geojson-world-map';
+import worldGeoJSON from 'world-map-geojson';
 import 'leaflet/dist/leaflet.css';
 import './WorldMap.css';
 import convertCountryName from './CountryNameConverter'
@@ -20,13 +20,13 @@ class WorldMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedCountry: null,
+            selectedCountry: props.stats[0],
             center: {
                 lat: 40.8471,
                 lng: 14.0625
             },
-            zoom: 2,
-            maxZoom: 2
+            zoom: 1,
+            maxZoom: 1
         };
         this.mapRef = createRef();
         this.stats = _.keyBy(props.stats, 'country');
@@ -38,7 +38,10 @@ class WorldMap extends React.Component {
                 <h4>STATISTICS BY COUNTRY</h4>
                 <h6>Hover over a country for more details</h6>
                 <div className="row">
-                    <div className="col-lg-12">
+                    <div className="col-lg-12 selected-country-stats">
+                        <SelectedCountryStats selectedCountry={this.state.selectedCountry}/>
+                    </div>
+                    <div className="col-lg-12 map-container">
                         {this.renderMap()}
                     </div>
                 </div>
@@ -54,11 +57,10 @@ class WorldMap extends React.Component {
                 center={this.state.center}
                 zoom={this.state.zoom}
                 zoomControl={false}
+                draggable={false}
                 ref={this.mapRef}
                 maxZoom={this.state.maxZoom}
-                minZoom={this.state.maxZoom}
             >
-                {/*{this.renderSelectedCountryStats()}*/}
                 <GeoJSON
                     data={worldGeoJSON}
                     style={(feature) => {
@@ -73,14 +75,21 @@ class WorldMap extends React.Component {
     handleMouseOver = (e)  => {
         const country = e.properties.name;
         const stats = this.stats[convertCountryName(country)];
-        this.setState({
-            selectedCountry: stats
-        })
+        if (stats) {
+            this.setState({
+                selectedCountry: stats
+            })
+        }
     };
 
     handleEventsOnCountries = (feature, layer) => {
         const handleMouseOver = this.handleMouseOver;
+
         layer.on("mouseover", function() {
+            handleMouseOver(feature);
+        });
+
+        layer.on("click", function () {
             handleMouseOver(feature);
         })
     }
@@ -119,19 +128,6 @@ class WorldMap extends React.Component {
             fillOpacity: 1,
         }
     }
-
-    renderSelectedCountryStats() {
-        if (!this.state.selectedCountry) {
-            return null;
-        } else {
-            return(
-                <div className="col-xs-3 col-sm-3 col-md-3 col-lg-2 selected-country-stats">
-                    <SelectedCountryStats selectedCountry={this.state.selectedCountry}/>
-                </div>
-            )
-        }
-    }
-
 }
 
 export default WorldMap;

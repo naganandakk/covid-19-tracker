@@ -1,10 +1,7 @@
 .world-map {
-    height: 450px;
+    height: 350px;
 }
 
-.selected-country-stats {
-    z-index: 999;
-    /*background-color: #AAD3DF;*/
-    padding:1em;
-    height: 100%;
+.map-container {
+    margin-top: 0.6em;
 }
