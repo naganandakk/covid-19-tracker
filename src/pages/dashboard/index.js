@@ -104,12 +104,20 @@ class Dashboard extends React.Component {
     fetchData() {
         covid19api.get("/statistics")
             .then((response) => {
-                let statsByCountry = response.data.response;
+                const statsByCountry = response.data.response;
                 let overallStats = _.find(statsByCountry, {
                     country: 'All'
                 });
+                if (!overallStats) {
+                    overallStats = _.find(statsByCountry, {
+                        country: 'World'
+                    })
+                }
                 _.remove(statsByCountry, {
                     country: 'All'
+                });
+                _.remove(statsByCountry, {
+                    country: 'World'
                 });
                 this.updateStats(statsByCountry, overallStats);
                 this.disableLoader();

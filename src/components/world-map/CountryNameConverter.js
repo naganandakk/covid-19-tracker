@@ -7,7 +7,12 @@ export default function (country) {
         "dominican rep.": "Dominican-Republic",
         "central african rep.": "CAR",
         "dem. rep. congo": "DRC",
-        "korea": "S.-Korea"
+        "korea": "S.-Korea",
+        "eq. guinea": "Equatorial-Guinea",
+        "bosnia and herz.": "Bosnia-and-Herzegovina",
+        "czech rep.": "Czechia",
+        "lao pdr": "Laos",
+        "macedonia": "North-Macedonia"
     }
     const mappedCountry = conversionMap[country];
     if (mappedCountry) {
