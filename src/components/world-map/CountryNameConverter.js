@@ -12,13 +12,17 @@ export default function (country) {
         "bosnia and herz.": "Bosnia-and-Herzegovina",
         "czech rep.": "Czechia",
         "lao pdr": "Laos",
-        "macedonia": "North-Macedonia"
+        "macedonia": "North-Macedonia",
+        "s. sudan": "South-Sudan",
+        "w. sahara": "Western-Sahara",
+        "trinidad and tobago": "Trinidad-and-Tobago"
     }
     const mappedCountry = conversionMap[country];
     if (mappedCountry) {
         country = mappedCountry;
     } else {
         country = country.replace(/ /g, "-");
+        country = country.replace(/is.$/g, "islands");
         const countrySplits = country.split("-").map((e) => {
             return e.charAt(0).toUpperCase() + e.slice(1);
         });
