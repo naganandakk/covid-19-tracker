@@ -8,23 +8,22 @@
     "node": "10.16.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
-    "leaflet": "^1.6.0",
     "lodash": "^4.17.15",
     "moment-timezone": "^0.5.28",
     "react": "^16.13.1",
-    "react-data-table-component": "^6.3.1",
     "react-dom": "^16.13.1",
-    "react-leaflet": "^2.6.3",
     "react-moment": "^0.9.7",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.3.0",
     "styled-components": "^5.0.1",
-    "world-map-geojson": "^1.0.2"
+    "typeface-comfortaa": "^1.1.4",
+    "typeface-roboto": "0.0.75"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -50,7 +49,6 @@
     ]
   },
   "devDependencies": {
-    "geojson-world-map": "0.0.2",
     "gh-pages": "^2.2.0"
   }
 }

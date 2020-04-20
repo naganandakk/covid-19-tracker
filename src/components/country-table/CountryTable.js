@@ -1,45 +1,41 @@
-import React from "react";
-import DataTable from "react-data-table-component";
-import TableColumns from "./TableColumns";
-import './CountryTable.css';
+import React from 'react';
+import TableContainer from "@material-ui/core/TableContainer";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
 
-class CountryTable extends React.Component {
-
-    render() {
-        return(
-            <div className="row">
-                <div className="col-lg-12">
-                    {this.renderAffectedCountriesCount()}
-                    {this.renderTable()}
-                </div>
-            </div>
-        );
-    }
-
-    renderAffectedCountriesCount() {
-        return(
-            <div className="text-right">
-                <p className="affected-countries-count">{this.props.statistics.length} COUNTRIES AFFECTED</p>
-            </div>
-        );
-    }
-
-    renderTable() {
-        return (
-            <div className="country-table-wrapper">
-                <DataTable
-                    className="country-table"
-                    columns={TableColumns}
-                    data={this.props.statistics}
-                    defaultSortField={'cases.total'}
-                    defaultSortAsc={false}
-                    highlightOnHover={true}
-                    dense={true}
-                    noHeader={true}
-                />
-            </div>
-        );
-    }
+const countryTable = (props) => {
+    return(
+        <TableContainer component={Paper}>
+            <Table aria-label="country-wise covid-19 information">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Country</TableCell>
+                        <TableCell align="right">Confirmed</TableCell>
+                        <TableCell align="right">Active</TableCell>
+                        <TableCell align="right">Recovered</TableCell>
+                        <TableCell align="right">Deceased</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {props.countries.map((country) => (
+                        <TableRow key={country.CountryCode}>
+                            <TableCell component="th" scope="row">
+                                {country.Country}
+                            </TableCell>
+                            <TableCell align="right">{country.TotalConfirmed}</TableCell>
+                            <TableCell align="right">{country.TotalConfirmed - country.TotalRecovered - country.TotalDeaths}</TableCell>
+                            <TableCell align="right">{country.TotalRecovered}</TableCell>
+                            <TableCell align="right">{country.TotalDeaths}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    )
 }
 
-export default CountryTable;
+export default countryTable;
