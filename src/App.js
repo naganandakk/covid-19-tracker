@@ -9,6 +9,7 @@ import Summary from "./components/summary/Summary";
 import Grid from "@material-ui/core/Grid";
 import CountryTable from "./components/country-table/CountryTable";
 import Header from './components/header/Header';
+import RecentNews from "./components/recent-news/RecentNews";
 
 class App extends React.Component {
     constructor(props) {
@@ -27,13 +28,12 @@ class App extends React.Component {
                 <Header />
                 <Container className="container">
                     <Grid container spacing={2}>
-                        <Grid item xs sm={6}>
+                        <Grid item xs={12} sm={8}>
                             <Summary summary={this.state.summary}/>
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={2}>
-                        <Grid item xs sm={6}>
                             <CountryTable countries={this.state.countries}/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <RecentNews/>
                         </Grid>
                     </Grid>
                 </Container>

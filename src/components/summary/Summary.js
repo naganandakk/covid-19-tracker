@@ -6,20 +6,23 @@ const summary = (props) => {
     const summary = props.summary;
 
     return(
-        <Grid container spacing={1}>
-            <Grid item xs>
-                <SummaryCard variant="confirmed" title="CONFIRMED" total={summary.TotalConfirmed} />
+        <React.Fragment>
+            <h2>GLOBAL STATISTICS</h2>
+            <Grid container spacing={1}>
+                <Grid item xs>
+                    <SummaryCard variant="confirmed" title="CONFIRMED" total={summary.TotalConfirmed} />
+                </Grid>
+                <Grid item xs>
+                    <SummaryCard variant="active" title="ACTIVE" total={summary.TotalActive} />
+                </Grid>
+                <Grid item xs>
+                    <SummaryCard variant="recovered" title="RECOVERED" total={summary.TotalRecovered} />
+                </Grid>
+                <Grid item xs>
+                    <SummaryCard variant="deceased" title="DECEASED" total={summary.TotalDeaths} />
+                </Grid>
             </Grid>
-            <Grid item xs>
-                <SummaryCard variant="active" title="ACTIVE" total={summary.TotalActive} />
-            </Grid>
-            <Grid item xs>
-                <SummaryCard variant="recovered" title="RECOVERED" total={summary.TotalRecovered} />
-            </Grid>
-            <Grid item xs>
-                <SummaryCard variant="deceased" title="DECEASED" total={summary.TotalDeaths} />
-            </Grid>
-        </Grid>
+        </React.Fragment>
     )
 }
 
