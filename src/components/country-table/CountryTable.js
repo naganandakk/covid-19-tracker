@@ -6,11 +6,13 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
+import Grid from "@material-ui/core/Grid";
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const countryTable = (props) => {
-    return(
-        <React.Fragment>
-            <h2>COUNTRY-WISE STATISTICS</h2>
+    const { countries, loading } = props;
+    const renderTable = () => {
+        return(
             <TableContainer component={Paper}>
                 <Table aria-label="country-wise covid-19 information">
                     <TableHead>
@@ -23,7 +25,7 @@ const countryTable = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.countries.map((country) => (
+                        {countries.map((country) => (
                             <TableRow key={country.CountryCode}>
                                 <TableCell component="th" scope="row">
                                     {country.Country}
@@ -37,6 +39,29 @@ const countryTable = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
+        )
+    }
+
+    const renderLoader = () => {
+        return(
+            <Grid container spacing={1}>
+                <Grid item xs={12}>
+                    <Skeleton animation="wave" variant="rect" height={50} />
+                </Grid>
+                <Grid item xs={12}>
+                    <Skeleton animation="wave" variant="rect" height={50} />
+                </Grid>
+                <Grid item xs={12}>
+                    <Skeleton animation="wave" variant="rect" height={50} />
+                </Grid>
+            </Grid>
+        )
+    }
+
+    return(
+        <React.Fragment>
+            <h2>COUNTRY-WISE STATISTICS</h2>
+            {loading ? renderLoader() : renderTable()}
         </React.Fragment>
     )
 }

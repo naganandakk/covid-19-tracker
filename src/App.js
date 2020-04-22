@@ -19,7 +19,12 @@ class App extends React.Component {
         this.state = {
             summary: {},
             countries: [],
-            articles: []
+            articles: [],
+            loading: {
+                articles: true,
+                summary: true,
+                countries: true
+            }
         }
         this.fetchData();
     }
@@ -31,12 +36,12 @@ class App extends React.Component {
                 <Header />
                 <Container className="container" maxWidth="xl">
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={7}>
-                            <Summary summary={this.state.summary}/>
-                            <CountryTable countries={this.state.countries}/>
-                        </Grid>
                         <Grid item xs={12} sm={5}>
-                            <RecentNews articles={this.state.articles}/>
+                            <Summary loading={this.state.loading.summary} summary={this.state.summary}/>
+                            <RecentNews loading={this.state.loading.articles} articles={this.state.articles}/>
+                        </Grid>
+                        <Grid item xs={12} sm={7}>
+                            <CountryTable loading={this.state.loading.countries} countries={this.state.countries}/>
                         </Grid>
                     </Grid>
                 </Container>
@@ -56,7 +61,12 @@ class App extends React.Component {
                 ...response.data.Global,
                 "TotalActive": response.data.Global.TotalConfirmed - response.data.Global.TotalRecovered - response.data.Global.TotalDeaths
             },
-            countries: response.data.Countries
+            countries: response.data.Countries,
+            loading: {
+                ...this.state.loading,
+                summary: false,
+                countries: false
+            }
         })
     }
 
@@ -65,7 +75,7 @@ class App extends React.Component {
             params: {
                 language: "en",
                 q: 'corona covid covid19 "covid 19" "covid-19"',
-                pageSize: 100
+                pageSize: 10
             }
         });
 
@@ -74,7 +84,11 @@ class App extends React.Component {
                 (obj) => {
                     return new Date(obj.publishedAt);
                 }
-            ], ["desc"])
+            ], ["desc"]),
+            loading: {
+                ...this.state.loading,
+                articles: false
+            }
         });
     }
 }
