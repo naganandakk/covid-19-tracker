@@ -30,7 +30,7 @@ class App extends React.Component {
                 summary: true,
                 countries: true
             },
-            theme: "default"
+            theme: "dark"
         }
     }
 
