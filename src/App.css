@@ -1,37 +1,27 @@
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
-.container {
-    margin-top: 15px;
-}
-.color-confirmed {
+
+.text-confirmed {
     color: #FF073A;
+    font-weight: 700 !important;
 }
 
-.color-active {
+.text-active {
     color: #007BFF;
+    font-weight: 700 !important;
 }
 
-.color-recovered {
+.text-recovered {
     color: #28A745;
+    font-weight: 700 !important;
 }
 
-.color-deceased {
+.text-deceased {
     color: #6C757D;
+    font-weight: 700 !important;
 }
 
-.bg-color-confirmed {
-    background-color: #FEE1E1;
-}
-
-.bg-color-active {
-    background-color: #F3F4FF;
-}
-
-.bg-color-recovered {
-    background-color: #E1F2E8;
-}
-
-.bg-color-deceased {
-    background-color: #F6F6F7;
+.dark-theme {
+    background-color: #000000;
 }

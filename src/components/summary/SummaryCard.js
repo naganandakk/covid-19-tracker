@@ -7,8 +7,8 @@ const summaryCard = (props) => {
     return(
         <Card>
             <CardContent>
-                <Typography align="center" className={`color-${props.variant}`} component="p">{props.title}</Typography>
-                <Typography align="center" className={`color-${props.variant}`} component="p">{props.total ? props.total.toLocaleString() : props.total}</Typography>
+                <Typography align="center" className={`text-${props.variant}`} component="p">{props.title}</Typography>
+                <Typography align="center" className={`text-${props.variant}`} component="p">{props.total ? props.total.toLocaleString() : props.total}</Typography>
             </CardContent>
         </Card>
     )

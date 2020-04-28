@@ -1,11 +1,16 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+const typography = {
+    fontFamily: [
+        'Comfortaa', 'cursive'
+    ].join(','),
+};
 
-const theme = createMuiTheme({
-    typography: {
-        fontFamily: [
-            'Comfortaa', 'cursive'
-        ].join(','),
-    },
-});
+export const DefaultTheme = {
+    typography: typography
+};
 
-export default theme;
+export const DarkTheme ={
+    typography: typography,
+    palette: {
+        type: "dark"
+    }
+};

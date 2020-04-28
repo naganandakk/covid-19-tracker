@@ -5,21 +5,23 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 const summary = (props) => {
     const { summary, loading } = props;
-    const renderSummary = () => {
+    const renderSummaryCards = () => {
+        const cardsInfo = [
+            { variant: "confirmed", title: "CONFIRMED", total: summary.TotalConfirmed },
+            { variant: "active", title: "ACTIVE", total: summary.TotalActive },
+            { variant: "recovered", title: "RECOVERED", total: summary.TotalRecovered },
+            { variant: "deceased", title: "DECEASED", total: summary.TotalDeaths }
+        ];
+
         return(
             <Grid container spacing={1}>
-                <Grid item xs>
-                    <SummaryCard animation="wave" variant="confirmed" title="CONFIRMED" total={summary.TotalConfirmed} />
-                </Grid>
-                <Grid item xs>
-                    <SummaryCard animation="wave" variant="active" title="ACTIVE" total={summary.TotalActive} />
-                </Grid>
-                <Grid item xs>
-                    <SummaryCard animation="wave" variant="recovered" title="RECOVERED" total={summary.TotalRecovered} />
-                </Grid>
-                <Grid item xs>
-                    <SummaryCard animation="wave" variant="deceased" title="DECEASED" total={summary.TotalDeaths} />
-                </Grid>
+                {cardsInfo.map(card => {
+                    return(
+                        <Grid key={card.title} item xs={6} sm={6} md>
+                            <SummaryCard animation="wave" variant={card.variant} title={card.title} total={card.total} />
+                        </Grid>
+                    )
+                })}
             </Grid>
         )
     }
@@ -45,7 +47,7 @@ const summary = (props) => {
     return(
         <React.Fragment>
             <h2>GLOBAL STATISTICS</h2>
-            { loading ? renderLoader() : renderSummary() }
+            { loading ? renderLoader() : renderSummaryCards() }
         </React.Fragment>
     )
 }

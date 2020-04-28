@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
+import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from "@material-ui/core/CardContent";
@@ -30,10 +31,10 @@ export default function (props) {
             <CardContent>
                 <h3>{article.title}</h3>
                 <span className={classes.source}>
-                    {article.source.name} - <Moment fromNow={article.publishedAt} />
+                    {article.source.name} - <Moment fromNow>{article.publishedAt}</Moment>
                 </span>
                 <p className={classes.readMore}>
-                    <a rel="noopener noreferrer" target="_blank" href={article.url}>Read more</a>
+                    <Link rel="noopener noreferrer" target="_blank" href={article.url}>Read more</Link>
                 </p>
             </CardContent>
         </Card>

@@ -8,37 +8,61 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Grid from "@material-ui/core/Grid";
 import Skeleton from '@material-ui/lab/Skeleton';
+import TablePagination from "@material-ui/core/TablePagination";
 
-const countryTable = (props) => {
+export default function CountryTable (props) {
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const { countries, loading } = props;
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
     const renderTable = () => {
         return(
-            <TableContainer component={Paper}>
-                <Table aria-label="country-wise covid-19 information">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Country</TableCell>
-                            <TableCell align="right">Confirmed</TableCell>
-                            <TableCell align="right">Active</TableCell>
-                            <TableCell align="right">Recovered</TableCell>
-                            <TableCell align="right">Deceased</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {countries.map((country) => (
-                            <TableRow key={country.CountryCode}>
-                                <TableCell component="th" scope="row">
-                                    {country.Country}
-                                </TableCell>
-                                <TableCell align="right">{country.TotalConfirmed}</TableCell>
-                                <TableCell align="right">{country.TotalConfirmed - country.TotalRecovered - country.TotalDeaths}</TableCell>
-                                <TableCell align="right">{country.TotalRecovered}</TableCell>
-                                <TableCell align="right">{country.TotalDeaths}</TableCell>
+            <React.Fragment>
+                <TableContainer component={Paper}>
+                    <Table aria-label="country-wise covid-19 information">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Country</TableCell>
+                                <TableCell align="right">Confirmed</TableCell>
+                                <TableCell align="right">Active</TableCell>
+                                <TableCell align="right">Recovered</TableCell>
+                                <TableCell align="right">Deceased</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {countries.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((country) => (
+                                <TableRow key={country.CountryCode}>
+                                    <TableCell component="th" scope="row">
+                                        {country.Country}
+                                    </TableCell>
+                                    <TableCell align="right">{country.TotalConfirmed.toLocaleString()}</TableCell>
+                                    <TableCell align="right">{(country.TotalConfirmed - country.TotalRecovered - country.TotalDeaths).toLocaleString()}</TableCell>
+                                    <TableCell align="right">{country.TotalRecovered.toLocaleString()}</TableCell>
+                                    <TableCell align="right">{country.TotalDeaths.toLocaleString()}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 15, 20]}
+                    component="div"
+                    count={countries.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                />
+            </React.Fragment>
         )
     }
 
@@ -65,5 +89,3 @@ const countryTable = (props) => {
         </React.Fragment>
     )
 }
-
-export default countryTable;

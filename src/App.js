@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import theme from './theme';
+import { DefaultTheme, DarkTheme } from './theme';
 import covid19Api from './apis/covid19';
 import recentNewsApi from './apis/recentNews';
 import Container from '@material-ui/core/Container';
@@ -12,6 +12,10 @@ import Grid from "@material-ui/core/Grid";
 import CountryTable from "./components/country-table/CountryTable";
 import Header from './components/header/Header';
 import RecentNews from "./components/recent-news/RecentNews";
+import Footer from "./components/footer/Footer";
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const MINUTE_5 = 1000 * 60 * 5;
 
 class App extends React.Component {
     constructor(props) {
@@ -20,31 +24,48 @@ class App extends React.Component {
             summary: {},
             countries: [],
             articles: [],
+            lastUpdatedAt: null,
             loading: {
                 articles: true,
                 summary: true,
                 countries: true
-            }
+            },
+            theme: "default"
         }
+    }
+
+    toggleTheme = theme => {
+        this.setState({
+            theme: theme
+        })
+    }
+
+    componentDidMount() {
         this.fetchData();
+        this.refreshDataHandler = setInterval(() => this.fetchData(), MINUTE_5);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.refreshDataHandler);
     }
 
     render() {
         return (
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={this.state.theme === "dark" ? createMuiTheme(DarkTheme) : createMuiTheme(DefaultTheme)}>
                 <CssBaseline />
-                <Header />
-                <Container className="container" maxWidth="xl">
+                <Header theme={this.state.theme} toggleTheme={this.toggleTheme} lastUpdatedAt={this.state.lastUpdatedAt}/>
+                <Container maxWidth="xl">
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={5}>
-                            <Summary loading={this.state.loading.summary} summary={this.state.summary}/>
-                            <RecentNews loading={this.state.loading.articles} articles={this.state.articles}/>
-                        </Grid>
                         <Grid item xs={12} sm={7}>
+                            <Summary loading={this.state.loading.summary} summary={this.state.summary}/>
                             <CountryTable loading={this.state.loading.countries} countries={this.state.countries}/>
+                        </Grid>
+                        <Grid item xs={12} sm={5}>
+                            <RecentNews loading={this.state.loading.articles} articles={this.state.articles}/>
                         </Grid>
                     </Grid>
                 </Container>
+                <Footer/>
             </ThemeProvider>
         );
     }
@@ -62,6 +83,7 @@ class App extends React.Component {
                 "TotalActive": response.data.Global.TotalConfirmed - response.data.Global.TotalRecovered - response.data.Global.TotalDeaths
             },
             countries: response.data.Countries,
+            lastUpdatedAt: response.data.Date,
             loading: {
                 ...this.state.loading,
                 summary: false,
@@ -75,7 +97,7 @@ class App extends React.Component {
             params: {
                 language: "en",
                 q: 'corona covid covid19 "covid 19" "covid-19"',
-                pageSize: 10
+                pageSize: 5
             }
         });
 
