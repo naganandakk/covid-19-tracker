@@ -3,7 +3,7 @@ const tableOptions = {
     print: false,
     download: false,
     elevation: 2,
-    responsive: "scrollMaxHeight"
+    responsive: "scrollFullHeight"
 };
 
 export default tableOptions;

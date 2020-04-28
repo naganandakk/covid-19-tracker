@@ -1,15 +1,24 @@
-const typography = {
-    fontFamily: [
-        'Comfortaa', 'cursive'
-    ].join(','),
-};
+const commonStyles = {
+    typography: {
+        fontFamily: [
+            'Comfortaa', 'cursive'
+        ].join(',')
+    },
+    overrides: {
+        MUIDataTable: {
+            paper: {
+                overflowX: "auto"
+            }
+        }
+    }
+}
 
 export const DefaultTheme = {
-    typography: typography
+    ...commonStyles
 };
 
 export const DarkTheme ={
-    typography: typography,
+    ...commonStyles,
     palette: {
         type: "dark"
     }
