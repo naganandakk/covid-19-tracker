@@ -6,7 +6,6 @@ import Container from '@material-ui/core/Container';
 import Summary from "../summary/Summary";
 import Grid from "@material-ui/core/Grid";
 import CountryTable from "../country-table/CountryTable";
-import RecentNews from "../recent-news/RecentNews";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 
@@ -52,9 +51,6 @@ class Dashboard extends React.Component {
                         <Grid item xs={12} sm={7}>
                             <Summary loading={this.state.loading.summary} summary={this.state.summary}/>
                             <CountryTable loading={this.state.loading.countries} countries={this.state.countries} />
-                        </Grid>
-                        <Grid item xs={12} sm={5}>
-                            <RecentNews loading={this.state.loading.articles} articles={this.state.articles}/>
                         </Grid>
                     </Grid>
                 </Container>
