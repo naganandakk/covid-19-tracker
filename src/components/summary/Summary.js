@@ -46,7 +46,7 @@ const summary = (props) => {
 
     return(
         <React.Fragment>
-            <h2>GLOBAL STATISTICS</h2>
+            <h2>Global Statistics</h2>
             { loading ? renderLoader() : renderSummaryCards() }
         </React.Fragment>
     )

@@ -8,7 +8,6 @@ import tableData from './tableData';
 
 export default function CountryTable(props) {
     const {countries, loading} = props;
-
     const renderTable = () => {
         return (
             <MUIDataTable
@@ -37,7 +36,7 @@ export default function CountryTable(props) {
 
     return (
         <React.Fragment>
-            <h2>COUNTRY-WISE STATISTICS</h2>
+            <h2>Country-wise Statistics</h2>
             {loading ? renderLoader() : renderTable()}
         </React.Fragment>
     )
