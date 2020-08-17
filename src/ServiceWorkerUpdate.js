@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Snackbar, Button } from '@material-ui/core';
-import * as serviceWorker from '../../serviceWorker';
+import * as serviceWorker from './serviceWorker';
 
 const ServiceWorkerUpdate = () => {
     const [showReload, setShowReload] = React.useState(false);
@@ -16,7 +16,9 @@ const ServiceWorkerUpdate = () => {
     }, []);
 
     const reloadPage = () => {
-        waitingWorker?.postMessage({ type: 'SKIP_WAITING' });
+        if (waitingWorker) {
+            waitingWorker.postMessage({ type: 'SKIP_WAITING' })
+        }
         setShowReload(false);
         window.location.reload(true);
     };
