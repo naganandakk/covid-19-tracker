@@ -1,7 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
 import covid19Api from '../../apis/covid19';
-import recentNewsApi from '../../apis/recentNews';
 import Container from '@material-ui/core/Container';
 import Summary from "../summary/Summary";
 import Grid from "@material-ui/core/Grid";
@@ -29,13 +27,8 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchGlobalCovidStatsAndRecentNews();
-        this.refreshDataHandler = setInterval(() => this.fetchGlobalCovidStatsAndRecentNews(), MINUTE_5);
-    }
-
-    fetchGlobalCovidStatsAndRecentNews() {
         this.fetchGlobalCovidStats();
-        this.fetchRecentNews();
+        this.refreshDataHandler = setInterval(() => this.fetchGlobalCovidStats(), MINUTE_5);
     }
 
     componentWillUnmount() {
@@ -48,7 +41,8 @@ class Dashboard extends React.Component {
                 <Header theme={this.props.theme} toggleTheme={this.props.toggleTheme} lastUpdatedAt={this.state.lastUpdatedAt}/>
                 <Container maxWidth="xl">
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={7}>
+                        <Grid item xs={12} md={3}></Grid>
+                        <Grid item xs={12} md={6}>
                             <Summary loading={this.state.loading.summary} summary={this.state.summary}/>
                             <CountryTable loading={this.state.loading.countries} countries={this.state.countries} />
                         </Grid>
@@ -76,32 +70,6 @@ class Dashboard extends React.Component {
                     countries: false
                 }
             })
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    async fetchRecentNews() {
-        try {
-            const response = await recentNewsApi.get("/everything", {
-                params: {
-                    language: "en",
-                    q: 'corona covid covid19 "covid 19" "covid-19"',
-                    pageSize: 5
-                }
-            });
-
-            this.setState({
-                articles: _.orderBy(response.data.articles,[
-                    (obj) => {
-                        return new Date(obj.publishedAt);
-                    }
-                ], ["desc"]),
-                loading: {
-                    ...this.state.loading,
-                    articles: false
-                }
-            });
         } catch (e) {
             console.log(e);
         }
